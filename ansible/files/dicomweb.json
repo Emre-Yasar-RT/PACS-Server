@@ -1,0 +1,12 @@
+{
+    /**
+     * The following options control the configuration of the Orthanc
+     * plugin adding support of WADO and DICOMweb.
+     **/
+
+    "DicomWeb" : {
+      "Servers" : {
+        "sample" : [ "http://10.xx.x.xxx/dicom-web/", "admin", "2024FhNw4202" ]
+      }
+    }
+}

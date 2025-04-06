@@ -1,0 +1,92 @@
+---
+- name: Install Orthanc PACS and Plugins
+  hosts: pacs-virtualserver
+  become: true
+  tasks:
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+
+    - name: Install Orthanc
+      apt:
+        name: orthanc
+        state: present
+
+    - name: Install Orthanc plugins
+      apt:
+        name:
+          - orthanc-dicomweb
+          - orthanc-gdcm
+          - orthanc-imagej
+          - orthanc-mysql
+          - orthanc-postgresql
+          - orthanc-python
+          - orthanc-webviewer
+          - orthanc-wsi
+        state: present
+
+    - name: Ensure log directory exists
+      file:
+        path: /var/log/orthanc/
+        state: directory
+        owner: orthanc
+        group: orthanc
+        mode: '0755'
+
+    - name: Check Orthanc log directory
+      stat:
+        path: /var/log/orthanc/
+      register: log_dir_check
+
+    - name: Display log directory status
+      debug:
+        msg: "Orthanc log directory status: {{ log_dir_check.stat }}"
+
+    - name: Replace Orthanc configuration
+      copy:
+        src: files/orthanc.json
+        dest: /etc/orthanc/orthanc.json
+        owner: orthanc
+        group: orthanc
+        mode: '0644'
+      notify:
+        - Restart Orthanc
+        
+    - name: Replace Credentials configuration
+      copy:
+        src: files/credentials.json
+        dest: /etc/orthanc/credentials.json
+        owner: orthanc
+        group: orthanc
+        mode: '0644'
+      notify:
+        - Restart Orthanc
+
+    - name: Replace DICOMweb configuration
+      copy:
+        src: files/dicomweb.json
+        dest: /etc/orthanc/dicomweb.json
+        owner: orthanc
+        group: orthanc
+        mode: '0644'
+      notify:
+        - Restart Orthanc
+
+    - name: Update Orthanc systemd service file
+      lineinfile:
+        path: /lib/systemd/system/orthanc.service
+        regexp: '^User='
+        line: 'User=root'
+        backup: yes
+      notify:
+        - Reload Systemd
+        - Restart Orthanc
+
+  handlers:
+    - name: Restart Orthanc
+      service:
+        name: orthanc
+        state: restarted
+
+    - name: Reload Systemd
+      command: systemctl daemon-reload

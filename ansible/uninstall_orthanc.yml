@@ -1,0 +1,50 @@
+---
+- name: Remove Orthanc PACS and Plugins
+  hosts: pacs-virtualserver
+  become: true
+  tasks:
+    - name: Stop and disable Orthanc service
+      service:
+        name: orthanc
+        state: stopped
+        enabled: false
+
+    - name: Uninstall Orthanc
+      apt:
+        name: orthanc
+        state: absent
+        purge: yes
+
+    - name: Uninstall Orthanc plugins
+      apt:
+        name:
+          - orthanc-dicomweb
+          - orthanc-gdcm
+          - orthanc-imagej
+          - orthanc-mysql
+          - orthanc-postgresql
+          - orthanc-python
+          - orthanc-webviewer
+          - orthanc-wsi
+        state: absent
+        purge: yes
+
+    - name: Remove Orthanc log directory
+      file:
+        path: /var/log/orthanc/
+        state: absent
+
+    - name: Remove Orthanc storage directory
+      file:
+        path: /var/lib/orthanc/
+        state: absent
+
+    - name: Remove Orthanc configuration directory
+      file:
+        path: /etc/orthanc/
+        state: absent
+
+    - name: Clean up unused packages and dependencies
+      apt:
+        autoremove: yes
+        autoclean: yes

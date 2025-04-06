@@ -1,0 +1,29 @@
+{
+  "Name": "Orthanc",
+  "StorageDirectory": "/var/lib/orthanc/db-v6",
+  "IndexDirectory": "/var/lib/orthanc/db",
+  "LogDirectory": "/var/log/orthanc",
+
+  "HttpServerEnabled": true,
+  "HttpPort": 80,
+
+  "RemoteAccessAllowed": true,
+  "AuthenticationEnabled": true,
+
+  "DicomServerEnabled": true,
+  "DicomPort": 11112,
+  "BindAddress": "0.0.0.0",
+  "Plugins": ["/usr/share/orthanc/plugins/libOrthancDicomWeb.so"],
+  
+  "DicomAet": "ORTHANC",
+  "DicomCheckCalledAet": false,
+  "DicomAlwaysAllowEcho": true,
+
+  "AnyIncomingConnection": true,
+  "MaximumStorageSize": 0, // 0 means unlimited
+  "MaximumPatientCount": 0, // 0 means unlimited
+
+  "Verbose": true,
+
+  "DicomWebEnabled": true
+}

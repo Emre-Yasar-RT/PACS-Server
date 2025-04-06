@@ -1,0 +1,9 @@
+# **Reflexion Nicola Bodmer**
+
+Die Arbeit an diesem Projekt hat mir großen Spaß bereitet, da es immer wieder neue Herausforderungen gab, die es zu bewältigen galt. Die Zusammenarbeit mit meinem Projektpartner Emre Yasar war sehr angenehm, da wir uns gut verstanden haben und beide ein großes Interesse an der Thematik hatten. Dennoch gab es auch einige Herausforderungen, insbesondere die Abhängigkeit vom Netzwerk-Team und von Dorian Vogel. Da wir keine Firewall-Regeln selbst erstellen konnten und auch keinen direkten Zugriff auf das Brainlab-System hatten, mussten wir oft auf externe Unterstützung warten.
+
+Zu Beginn hatten wir einige Schwierigkeiten mit dem Zugriff auf den Server, da der SSH-Port in der Firewall-Regel noch nicht aktiv war. Das hat uns zunächst verunsichert, besonders nachdem Thomas Morgenthaler uns mitteilte, dass es bis zu einer Woche dauern könnte, bis die Firewall-Regeln umgesetzt werden. Trotzdem konnten wir die Zeit sinnvoll nutzen, um uns optimal auf den Zugriff auf den PACS-Server vorzubereiten.
+
+Rückblickend denke ich, dass wir bei der Planung der Netzwerkarchitektur gründlicher hätten vorgehen sollen. Anfangs haben wir nur einen groben Plan erstellt, wodurch wir später häufiger bei Thomas Morgenthaler nachfragen mussten, ob er zusätzliche Ports öffnen könnte. Das war sicherlich weder für ihn noch für uns ideal. Auch die Integration der Brainlab-Software haben wir unterschätzt, da wir davon ausgegangen waren, direkten Zugriff auf das System zu erhalten und die notwendigen Konfigurationen selbst vornehmen zu können. Leider war das nicht der Fall, was unsere Arbeit in diesem Bereich stark eingeschränkt hat.
+
+Trotz dieser Hürden bin ich mit dem Ergebnis des Projekts zufrieden. Wir konnten die meisten Ziele erfolgreich abschließen, und die Arbeit, die wir geleistet haben, ist aus meiner Sicht ein großer Erfolg.
